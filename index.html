@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Buried Memory — Balidis Games</title>
+  <meta name="description" content="Buried Memory: Nothing Stays Buried — a psychological horror game from Balidis Games.">
+  <meta name="theme-color" content="#000000">
+  
+  <meta property="og:title" content="Buried Memory: Nothing Stays Buried">
+  <meta property="og:description" content="A psychological horror game from Balidis Games.">
+  <meta property="og:image" content="keyart.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  
+  <link rel="icon" href="logo-light.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    :root{
+      --paper:#000000;
+      --wash:#0b0b0b;
+      --ink:#ffffff;
+      --text:#c4c4c4;
+      --muted:#8a8a8a;
+      --line:rgba(255,255,255,.13);
+      --pad:clamp(24px, 6vw, 96px);
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;background:var(--paper)}
+    body{margin:0;background:var(--paper);color:var(--text);font-family:'Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-weight:300;line-height:1.75;-webkit-font-smoothing:antialiased;}
+    img,video{max-width:100%;display:block}
+    a{color:inherit}
+    ::selection{background:rgba(255,255,255,.2);color:#fff}
+    ::-moz-selection{background:rgba(255,255,255,.2);color:#fff}
+    nav,.btn,.eyebrow,.caption,.socials,.play,.facts dt,.foot-bottom,img{-webkit-user-select:none;user-select:none;}
+    .wrap{max-width:1180px;margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+    .narrow{max-width:660px}
+    .eyebrow{font-size:11px;font-weight:400;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin:0 0 30px;}
+    header{position:fixed;top:0;left:0;right:0;z-index:60;border-bottom:1px solid transparent;transition:background .35s ease,border-color .35s ease;}
+    header.solid{background:rgba(0,0,0,.72);backdrop-filter:saturate(160%) blur(14px);-webkit-backdrop-filter:saturate(160%) blur(14px);border-bottom-color:var(--line);}
+    .headbar{display:flex;align-items:center;justify-content:space-between;gap:24px;height:74px}
+    .brand img{height:19px;width:auto;opacity:.95}
+    nav{display:flex;gap:34px}
+    nav a{font-size:11px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,.55);transition:color .3s ease;}
+    nav a:hover{color:#fff}
+    @media(max-width:680px){ nav{display:none} .headbar{height:64px} }
+    .hero{text-align:center;padding:clamp(120px,17vh,180px) 0 clamp(64px,10vh,104px);}
+    .keyart{margin:0 auto;max-width:820px}
+    .keyart img{width:100%;height:auto}
+    .actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:clamp(34px,5vw,52px)}
+    .btn{display:inline-flex;align-items:center;gap:11px;font-family:inherit;font-size:11.5px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;padding:16px 30px;border:1px solid #fff;border-radius:2px;background:#fff;color:#000;cursor:pointer;transition:background .25s ease,color .25s ease,transform .25s ease,border-color .25s ease;}
+    .btn:hover{background:#dcdcdc;border-color:#dcdcdc;transform:translateY(-1px)}
+    .btn svg{width:16px;height:16px;fill:currentColor;flex:none}
+    .btn--ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.32)}
+    .btn--ghost:hover{background:#fff;color:#000;border-color:#fff}
+    .btn--soon{background:transparent;color:rgba(255,255,255,.4);border-color:rgba(255,255,255,.15);cursor:default;pointer-events:none;}
+    .btn--soon:hover{background:transparent;transform:none}
+    .trailer{padding:clamp(56px,9vh,96px) 0 clamp(80px,12vh,124px)}
+    .player{position:relative;background:#000;border-radius:3px;overflow:hidden;border:1px solid var(--line);}
+    .player video{width:100%;aspect-ratio:16/9;object-fit:cover;background:#000}
+    .player .cover{position:absolute;inset:0;display:grid;place-items:center;background:center/cover no-repeat url('poster.jpg');cursor:pointer;transition:opacity .5s ease;}
+    .player .cover::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.3)}
+    .player .cover.hide{opacity:0;pointer-events:none}
+    .play{position:relative;z-index:2;width:74px;height:74px;border-radius:50%;border:1px solid rgba(255,255,255,.75);background:rgba(255,255,255,.08);backdrop-filter:blur(3px);display:grid;place-items:center;transition:background .3s ease,transform .3s ease;}
+    .cover:hover .play{background:rgba(255,255,255,.22);transform:scale(1.06)}
+    .play svg{width:19px;height:19px;fill:#fff;margin-left:4px}
+    .caption{margin-top:16px;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);}
+    section{padding:clamp(76px,12vh,124px) 0}
+    .band{background:var(--wash);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .body p{margin:0 0 24px;color:var(--text);font-size:clamp(15px,1.7vw,17px)}
+    .body p:last-child{margin-bottom:0}
+    .pull{font-size:clamp(19px,2.6vw,26px);font-weight:200;letter-spacing:.02em;line-height:1.55;color:var(--ink);margin:44px 0 0;padding-top:38px;border-top:1px solid var(--line);}
+    .facts{margin:0;border-top:1px solid var(--line)}
+    .facts div{display:flex;justify-content:space-between;gap:24px;padding:17px 0;border-bottom:1px solid var(--line);font-size:13.5px;}
+    .facts dt{color:var(--muted);letter-spacing:.14em;text-transform:uppercase;font-size:10.5px}
+    .facts dd{margin:0;text-align:right;color:var(--ink);font-weight:300}
+    footer{border-top:1px solid var(--line);padding:clamp(60px,9vh,86px) 0 46px}
+    .foot-top{display:flex;flex-wrap:wrap;gap:44px;justify-content:space-between;align-items:flex-start}
+    footer .logo img{height:17px;opacity:.9}
+    .socials{display:flex;gap:9px;flex-wrap:wrap}
+    .socials a{width:42px;height:42px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;color:var(--muted);transition:color .25s ease,border-color .25s ease,transform .25s ease;}
+    .socials a:hover{color:#fff;border-color:#fff;transform:translateY(-2px)}
+    .socials svg{width:16px;height:16px;fill:currentColor}
+    .mailto{display:inline-block;margin-top:14px;font-size:14px;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px;transition:border-color .25s ease;}
+    .mailto:hover{border-color:#fff}
+    .foot-bottom{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#6a6a6a;}
+    .rise{opacity:0;transform:translateY(22px);transition:opacity .9s cubic-bezier(.22,.61,.36,1),transform .9s cubic-bezier(.22,.61,.36,1)}
+    .rise.in{opacity:1;transform:none}
+    @media(prefers-reduced-motion:reduce){.rise{opacity:1;transform:none;transition:none} html{scroll-behavior:auto}}
+    </style>
+  </head>
+  <body>
+    <header id="head">
+      <div class="wrap headbar">
+        <a class="brand" href="#top" aria-label="Balidis Games — home"><img src="logo-light.png" alt="Balidis Games"></a>a>
+        <nav><a href="#trailer">Trailer</a>a><a href="#game">The Game</a>a><a href="#details">Details</a>a><a href="#contact">Contact</a>a></nav>
+      </div>div>
+    </header>header>
+  <main id="top">
+  <div class="hero">
+  <div class="wrap">
+  <div class="keyart rise"><img src="keyart.jpg" alt="Buried Memory: Nothing Stays Buried" width="1382" height="921"></div>div>
+  <div class="actions rise">
+  <a class="btn btn--soon" aria-disabled="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.98 2C6.44 2 1.9 6.26 1.45 11.68l5.63 2.33a3.03 3.03 0 0 1 1.72-.53h.15l2.5-3.63v-.05a4.02 4.02 0 1 1 4.02 4.02h-.09l-3.57 2.55v.13a3.03 3.03 0 0 1-6.03.44l-4.03-1.67A10.01 10.01 0 1 0 11.98 2Zm-3.7 15.16.98.4a2.29 2.29 0 1 0 1.35-2.98l1.02.42a1.69 1.69 0 1 1-1.29 3.12l-1.06-.44.99.4Zm10.7-8.13a2.68 2.68 0 1 0-5.36 0 2.68 2.68 0 0 0 5.36 0Zm-4.69 0a2.02 2.02 0 1 1 4.03 0 2.02 2.02 0 0 1-4.03 0Z"/></svg>svg>Wishlist on Steam</a>a>
+  <a class="btn btn--ghost" href="#trailer">Watch the teaser</a>a>
+  </div>div>
+  </div>div>
+  </div>div>
+  <div class="trailer wrap" id="trailer">
+  <div class="player rise">
+  <video id="teaser" src="teaser.mp4" poster="poster.jpg" preload="metadata" playsinline controls></video>video>
+  <div class="cover" id="cover" role="button" tabindex="0" aria-label="Play teaser"><span class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>svg></span>span></div>div>
+  </div>div>
+  <p class="caption rise">Teaser</p>p>
+  </div>div>
+  <section class="band" id="game">
+  <div class="wrap">
+  <p class="eyebrow rise">The Game</p>p>
+  <div class="narrow body">
+  <p class="rise">There are things a person tries to forget. Fears hidden deep inside, weaknesses they refuse to accept, and thoughts they avoid confronting.</p>p>
+  <p class="rise">In this psychological horror game, you will experience the difficult journey of a man who has learned to put himself above everything else. A man who has become used to avoiding the things that challenge him and continuing through life without ever truly looking within himself.</p>p>
+  <p class="rise">But eventually, every person must face the things they tried to leave behind.</p>p>
+  <p class="rise">As the reality around him begins to change, he will find himself trapped in a world where his fears take form. To move forward, he must confront not only what stands before him, but also what he has kept hidden inside for years.</p>p>
+  <p class="rise">Explore dark environments, face fears that have taken physical form, and discover a story about human nature, selfishness, and the difficult process of coming face to face with yourself.</p>p>
+  <p class="pull rise">Sometimes, the hardest opponent is not the one standing in front of you.<br>It is the one you carry inside.</p>p>
+  </div>div>
+  </div>div>
+  </section>section>
+  <section id="details">
+  <div class="wrap">
+  <p class="eyebrow rise">Details</p>p>
+  <div class="narrow rise">
+  <dl class="facts">
+  <div><dt>Studio</dt><dd>Balidis Games</dd></div>
+  <div><dt>Genre</dt><dd>Psychological horror</dd></div>
+  <div><dt>Platform</dt><dd>PC — Steam</dd></div>
+  </dl>dl>
+  </div>
+  </div>
+  </section>section>
+  </main>main>
+  <footer id="contact">
+  <div class="wrap">
+  <div class="foot-top">
+  <div>
+  <div class="logo"><img src="logo-light.png" alt="Balidis Games"></div>
+  <a class="mailto" href="mailto:petrosbalidis@gmail.com">petrosbalidis@gmail.com</a>a>
+  </div>
+  <div>
+  <p class="eyebrow" style="margin-bottom:14px">Follow</p>p>
+  <div class="socials">
+  <a href="https://www.youtube.com/@petrosbalidis" aria-label="YouTube" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8ZM9.6 15.6V8.4l6.2 3.6-6.2 3.6Z"/></svg>svg></a>a>
+  <a href="https://www.instagram.com/petrosbalidis" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.8 3.8 0 0 1-1.38-.9 3.8 3.8 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16ZM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.9 5.9 0 0 0-2.13 1.38A5.9 5.9 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13a5.9 5.9 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0Zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm7.85-10.4a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0Z"/></svg>svg></a>a>
+  <a href="https://www.tiktok.com/@petrosbalidis" aria-label="TikTok" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.59 2.59 0 1 1 .77-5.06V9.7a5.67 5.67 0 0 0-.77-.05A5.65 5.65 0 1 0 15.54 15.3V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3a4.29 4.29 0 0 1-3.24-1.48Z"/></svg>svg></a>a>
+  </div>
+  </div>
+  </div>
+  <div class="foot-bottom">
+  <span>© <span id="year">2026</span> Balidis Games</span>
+  <span>All trademarks are property of their respective owners</span>
+  </div>
+  </div>
+  </footer>footer>
+  <script>
+    const head = document.getElementById('head');
+    const onScroll = () => head.classList.toggle('solid', window.scrollY > 12);
+    onScroll();
+    addEventListener('scroll', onScroll, {passive:true});
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('in'), i * 70); io.unobserve(e.target); } });
+    }, {threshold:.12, rootMargin:'0px 0px -40px'});
+    document.querySelectorAll('.rise').forEach(el => io.observe(el));
+    const video = document.getElementById('teaser');
+    const cover = document.getElementById('cover');
+    const start = () => { cover.classList.add('hide'); video.play(); };
+    cover.addEventListener('click', start);
+    cover.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); start(); } });
+    video.addEventListener('ended', () => { video.currentTime = 0; cover.classList.remove('hide'); });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  </body>
+</html>html>
+  </script></span></span></dd></dd></dt></div></nav>
+  </body>
+  </style></title>
+  </head>
